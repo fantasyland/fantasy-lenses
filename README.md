@@ -22,10 +22,10 @@ var person = {
     numberLens = objectLens('number'),
     store = locationLens.andThen(numberLens).run(person);
 
-console.log(store.getter());
+console.log(store.get());
 // 1006
 
-console.log(store.setter(1007));
+console.log(store.set(1007));
 // { name: 'Brian McKenna',
 //   location: { number: 1007, street: 'Pearl St', postcode: 80302 } }
 ```
@@ -55,7 +55,7 @@ console.log(data.filter(function(o) {
     return configTypeLens.run(o).fold(
         function(store) {
             // Get the field's content
-            return store.getter() == 2;
+            return store.get() == 2;
         },
         function() {
             // Didn't find field

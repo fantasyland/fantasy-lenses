@@ -8,8 +8,12 @@
     "daggy": "0.0.1",
     "fantasy-stores": "~0.1.0"
   },
-  "devDependencies": {},
-  "scripts": {},
+  "devDependencies": {
+    "nodeunit": "~0.8.1"
+  },
+  "scripts": {
+    "test": "$(npm bin)/nodeunit test.js"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/puffnfresh/fantasy-lenses.git"

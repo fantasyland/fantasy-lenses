@@ -1,0 +1,28 @@
+{
+  "name": "fantasy-lenses",
+  "version": "0.0.0",
+  "description": "Composable, immutable getters and setters.",
+  "main": "lens.js",
+  "dependencies": {
+    "fantasy-options": "0.0.1",
+    "daggy": "0.0.1",
+    "fantasy-stores": "0.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/puffnfresh/fantasy-lenses.git"
+  },
+  "keywords": [
+    "fantasyland",
+    "lens",
+    "lenses",
+    "category"
+  ],
+  "author": "Brian McKenna",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/puffnfresh/fantasy-lenses/issues"
+  }
+}

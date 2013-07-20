@@ -6,7 +6,7 @@
   "dependencies": {
     "fantasy-options": "0.0.1",
     "daggy": "0.0.1",
-    "fantasy-stores": "0.0.1"
+    "fantasy-stores": "~0.1.0"
   },
   "devDependencies": {},
   "scripts": {},

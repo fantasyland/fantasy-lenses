@@ -32,10 +32,10 @@ Lens.prototype.compose = function(b) {
     var a = this;
     return Lens(function(target) {
         var c = b.run(target),
-            d = a.run(c.getter());
+            d = a.run(c.get());
         return Store(
-            compose(c.setter, d.setter),
-            d.getter
+            compose(c.set, d.set),
+            d.get
         );
     });
 };
@@ -88,10 +88,10 @@ PartialLens.prototype.compose = function(b) {
     var a = this;
     return PartialLens(function(target) {
         return b.run(target).chain(function(c) {
-            return a.run(c.getter()).map(function(d) {
+            return a.run(c.get()).map(function(d) {
                 return Store(
-                    compose(c.setter, d.setter),
-                    d.getter
+                    compose(c.set, d.set),
+                    d.get
                 );
             });
         });

@@ -1,17 +1,9 @@
 var daggy = require('daggy'),
+    C = require('fantasy-combinators'),
     Option = require('fantasy-options'),
     Store = require('fantasy-stores'),
     Lens = daggy.tagged('run'),
     PartialLens = daggy.tagged('run');
-
-function identity(a) {
-    return a;
-}
-function compose(f, g) {
-    return function(a) {
-        return f(g(a));
-    };
-}
 
 function thisAndThen(b) {
     return b.compose(this);
@@ -21,7 +13,7 @@ function thisAndThen(b) {
 Lens.id = function() {
     return Lens(function(target) {
         return Store(
-            identity,
+            C.identity,
             function() {
                 return target;
             }
@@ -34,7 +26,7 @@ Lens.prototype.compose = function(b) {
         var c = b.run(target),
             d = a.run(c.get());
         return Store(
-            compose(c.set, d.set),
+            C.compose(c.set)(d.set),
             d.get
         );
     });
@@ -90,7 +82,7 @@ PartialLens.prototype.compose = function(b) {
         return b.run(target).chain(function(c) {
             return a.run(c.get()).map(function(d) {
                 return Store(
-                    compose(c.set, d.set),
+                    C.compose(c.set)(d.set),
                     d.get
                 );
             });

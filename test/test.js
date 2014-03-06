@@ -1,5 +1,5 @@
-var Lens = require('./').Lens,
-    PartialLens = require('./').PartialLens,
+var Lens = require('../fantasy-lenses').Lens,
+    PartialLens = require('../fantasy-lenses').PartialLens,
     person = {
         name: "Brian McKenna",
         skills: [

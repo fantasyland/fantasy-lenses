@@ -1,8 +1,9 @@
 {
   "name": "fantasy-lenses",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Composable, immutable getters and setters.",
-  "main": "lens.js",
+  "files": ["fantasy-lenses.js", "src/*.js"],
+  "main": "lenses.js",
   "dependencies": {
     "fantasy-options": "0.0.1",
     "daggy": "0.0.1",
@@ -10,10 +11,17 @@
     "fantasy-combinators": "0.0.1"
   },
   "devDependencies": {
-    "nodeunit": "~0.8.1"
+    "grunt-cli": "0.1.9",
+    "grunt": "0.4.x",
+    "grunt-contrib-jshint": "0.6.x",
+    "grunt-contrib-nodeunit": "0.2.0",
+    "fantasy-check": "0.x.x",
+    "fantasy-helpers": "0.0.x",
+    "fantasy-combinators": "0.0.x",
+    "fantasy-identities": "0.x.x"
   },
   "scripts": {
-    "test": "$(npm bin)/nodeunit test.js"
+    "test": "grunt"
   },
   "repository": {
     "type": "git",

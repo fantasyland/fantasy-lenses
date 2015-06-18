@@ -17,7 +17,6 @@
     "grunt-contrib-nodeunit": "0.2.0",
     "fantasy-check": "0.x.x",
     "fantasy-helpers": "0.0.x",
-    "fantasy-combinators": "0.0.x",
     "fantasy-identities": "0.x.x"
   },
   "scripts": {

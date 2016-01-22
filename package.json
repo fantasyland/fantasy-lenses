@@ -5,26 +5,23 @@
   "files": ["fantasy-lenses.js", "src/*.js"],
   "main": "lenses.js",
   "dependencies": {
-    "fantasy-options": "0.0.1",
-    "daggy": "0.0.1",
+    "daggy": "0.0.x",
+    "fantasy-options": "0.0.x",
     "fantasy-stores": "~0.1.0",
-    "fantasy-combinators": "0.0.1"
+    "fantasy-helpers": "0.0.x",
+    "fantasy-combinators": "0.0.x"
   },
   "devDependencies": {
-    "grunt-cli": "0.1.9",
-    "grunt": "0.4.x",
-    "grunt-contrib-jshint": "0.6.x",
-    "grunt-contrib-nodeunit": "0.2.0",
+    "nodeunit": "0.9.x",
     "fantasy-check": "0.x.x",
-    "fantasy-helpers": "0.0.x",
-    "fantasy-identities": "0.x.x"
+    "fantasy-identities": "0.0.x"
   },
   "scripts": {
-    "test": "grunt"
+      "test": "node --harmony_destructuring node_modules/.bin/nodeunit test/*.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/puffnfresh/fantasy-lenses.git"
+    "url": "git://github.com/fantasyland/fantasy-lenses.git"
   },
   "keywords": [
     "fantasyland",
@@ -35,6 +32,6 @@
   "author": "Brian McKenna",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/puffnfresh/fantasy-lenses/issues"
+    "url": "https://github.com/fantasyland/fantasy-lenses/issues"
   }
 }

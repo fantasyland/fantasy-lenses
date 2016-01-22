@@ -1,8 +1,4 @@
-var Lens = require('./src/lens'),
-    PartialLens = require('./src/partial-lens');
+const Lens = require('./src/lens');
+const PartialLens = require('./src/partial-lens');
 
-if (typeof module != 'undefined')
-    module.exports = {
-        Lens: Lens,
-        PartialLens: PartialLens
-    };
+module.exports = { Lens, PartialLens };

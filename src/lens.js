@@ -1,73 +1,52 @@
-var daggy = require('daggy'),
-    C = require('fantasy-combinators'),
-    Option = require('fantasy-options'),
-    Store = require('fantasy-stores'),
-    Lens = daggy.tagged('run');
+const {tagged} = require('daggy');
+const {identity, constant, compose} = require('fantasy-combinators');
+const {extend, singleton} = require('fantasy-helpers');
+const Option = require('fantasy-options');
+const Store = require('fantasy-stores');
+
+const Lens = tagged('run');
 
 // Methods
-Lens.id = function() {
-    return Lens(function(target) {
-        return Store(
-            C.identity,
-            function() {
-                return target;
-            }
-        );
+Lens.id = () => {
+    return Lens((target) => {
+        return Store(identity, constant(target));
     });
 };
 Lens.prototype.compose = function(b) {
-    var a = this;
-    return Lens(function(target) {
-        var c = b.run(target),
-            d = a.run(c.get());
-        return Store(
-            C.compose(c.set)(d.set),
-            d.get
-        );
+    return Lens((target) => {
+        const c = b.run(target);
+        const d = this.run(c.get());
+        return Store(compose(c.set)(d.set), d.get);
     });
 };
 Lens.prototype.andThen = function(b) {
     return b.compose(this);
 };
 Lens.prototype.toPartial = function() {
-    var self = this;
-    return PartialLens(function(target) {
-        return Option.Some(self.run(target));
-    });
+    return PartialLens((target) => Option.Some(this.run(target)));
 };
+
 Lens.objectLens = function(property) {
     return Lens(function(o) {
         return Store(
-            function(s) {
-                var r = {},
-                    k;
-                for(k in o) {
-                    r[k] = o[k];
-                }
-                r[property] = s;
-                return r;
+            (s) => {
+                return extend(o, singleton(property, s));
             },
-            function() {
-                return o[property];
-            }
+            constant(o[property])
         );
     });
 };
 Lens.arrayLens = function(index) {
     return Lens(function(a) {
         return Store(
-            function(s) {
+            (s) => {
                 var r = a.concat();
                 r[index] = s;
                 return r;
             },
-            function() {
-                return a[index];
-            }
+            constant(a[index])
         );
     });
 };
 
-// Export
-if(typeof module != 'undefined')
-    module.exports = Lens;
+module.exports = Lens;

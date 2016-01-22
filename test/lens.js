@@ -1,13 +1,9 @@
-var λ = require('fantasy-check/src/adapters/nodeunit'),
-    lens = require('fantasy-check/src/laws/lens'),
+const λ = require('fantasy-check/src/adapters/nodeunit');
+const lens = require('fantasy-check/src/laws/lens');
     
-    combinators = require('fantasy-combinators'),
-    Identity = require('fantasy-identities'),
-    lenses = require('../fantasy-lenses'),
-
-    Lens = lenses.Lens,
-
-    identity = combinators.identity;
+const {identity} = require('fantasy-combinators');
+const Identity = require('fantasy-identities');
+const {Lens} = require('../fantasy-lenses');
 
 exports.lens = {
 

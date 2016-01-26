@@ -1,4 +1,5 @@
-const Lens = require('./src/lens');
-const PartialLens = require('./src/partial-lens');
+const { view } = require('./src/getter');
+const { over, set: set } = require('./src/setter');
+const { lens, lens_ } = require('./src/lens');
 
-module.exports = { Lens, PartialLens };
+module.exports = { lens, lens_, view, over, set: set };

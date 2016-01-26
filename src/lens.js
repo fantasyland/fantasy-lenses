@@ -1,52 +1,26 @@
+'use strict';
+
 const {tagged} = require('daggy');
-const {identity, constant, compose} = require('fantasy-combinators');
-const {extend, singleton} = require('fantasy-helpers');
-const Option = require('fantasy-options');
-const Store = require('fantasy-stores');
+const {Tuple} = require('fantasy-tuples');
+const {constant, identity} = require('fantasy-combinators');
 
-const Lens = tagged('run');
+const Shop = require('./internal/shop');
 
-// Methods
-Lens.id = () => {
-    return Lens((target) => {
-        return Store(identity, constant(target));
-    });
-};
-Lens.prototype.compose = function(b) {
-    return Lens((target) => {
-        const c = b.run(target);
-        const d = this.run(c.get());
-        return Store(compose(c.set)(d.set), d.get);
-    });
-};
-Lens.prototype.andThen = function(b) {
-    return b.compose(this);
-};
-Lens.prototype.toPartial = function() {
-    return PartialLens((target) => Option.Some(this.run(target)));
-};
-
-Lens.objectLens = function(property) {
-    return Lens(function(o) {
-        return Store(
-            (s) => {
-                return extend(o, singleton(property, s));
-            },
-            constant(o[property])
-        );
-    });
-};
-Lens.arrayLens = function(index) {
-    return Lens(function(a) {
-        return Store(
-            (s) => {
-                var r = a.concat();
-                r[index] = s;
-                return r;
-            },
-            constant(a[index])
-        );
+const lens_ = (to) => (pab) => {
+    return pab.first().dimap(to, (t) => {
+        return t._2(t._1);
     });
 };
 
-module.exports = Lens;
+const lens = (get, set) => lens_((s) => {
+    return Tuple(get(s), (b) => set(s, b));
+});
+
+const withLens = (l, f) => {
+    const x = l(Shop(identity, constant(identity)));
+    return f(x.x, x.y);
+};
+
+const cloneLens = (l) => withLens(l, (x, y) => (p) => lens(x, y)(p));
+
+module.exports = { lens, lens_ };

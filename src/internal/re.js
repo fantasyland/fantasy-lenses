@@ -1,16 +1,12 @@
 'use strict';
 
-const {tagged} = require('daggy');
-const {Tuple} = require('fantasy-tuples');
+const { tagged } = require('daggy');
+const { dimap } = require('fantasy-profunctors');
 
-const Re = tagged('x');
-
-Re.prototype.run = function() {
-    return this.x;
-};
+const Re = tagged('run');
 
 Re.prototype.dimap = function(f, g) {
-    return Re(this.x.dimap(g, f));
+    return Re(x => this.run(dimap(g, f, x)));
 };
 
 module.exports = Re;

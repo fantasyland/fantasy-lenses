@@ -2,21 +2,28 @@
   "name": "fantasy-lenses",
   "version": "0.2.0",
   "description": "Composable, immutable getters and setters.",
-  "files": ["fantasy-lenses.js", "src/*.js"],
+  "files": ["fantasy-lenses.js", "src/*.js", "src/**/*.js"],
   "main": "lenses.js",
   "dependencies": {
     "daggy": "0.0.x",
+    "fantasy-land": "git+https://github.com/fantasyland/fantasy-land.git#profunctor",
     "fantasy-helpers": "git+https://github.com/fantasyland/fantasy-helpers.git",
     "fantasy-combinators": "git+https://github.com/fantasyland/fantasy-combinators.git",
     "fantasy-tuples": "git+https://github.com/fantasyland/fantasy-tuples.git",
     "fantasy-eithers": "git+https://github.com/fantasyland/fantasy-eithers.git",
-    "fantasy-profunctor": "git+https://github.com/fantasyland/fantasy-profunctor.git"
+    "fantasy-profunctor": "git+https://github.com/fantasyland/fantasy-profunctor.git",
+    "fantasy-consts": "git+https://github.com/fantasyland/fantasy-consts.git",
+    "fantasy-monoids": "git+https://github.com/fantasyland/fantasy-monoids.git"
   },
   "devDependencies": {
-    "nodeunit": "0.9.x"
+    "nodeunit": "0.9.x",
+    "fantasy-check": "git+https://github.com/fantasyland/fantasy-check.git",
+    "fantasy-options": "0.x.x",
+    "fantasy-equality": "0.x.x",
+    "fantasy-environment": "git+https://github.com/SimonRichardson/fantasy-environment.git"
   },
   "scripts": {
-      "test": "node --harmony_destructuring node_modules/.bin/nodeunit test/*.js"
+      "test": "node --harmony_destructuring node_modules/.bin/nodeunit test/*.js test/**/*.js"
   },
   "repository": {
     "type": "git",

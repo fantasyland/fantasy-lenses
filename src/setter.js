@@ -1,10 +1,15 @@
 'use strict';
 
-const { compose, constant } = require('fantasy-combinators');
-const { Strong } = require('fantasy-profunctors');
+const { constant } = require('fantasy-combinators');
+const { curry } = require('fantasy-helpers');
 
-const over = (l) => compose(l)(Strong);
+const over = curry((l, f, s) => l(f)(s)); 
 
-const set = (l) => compose(over(l))(constant);
+const set = curry((l, b, s) => over(l, constant(b), s));
 
-module.exports = { over, set: set };
+const map = curry((f, x) => x.map(f));
+
+module.exports = { over
+                 , set: set
+                 , map
+                 };

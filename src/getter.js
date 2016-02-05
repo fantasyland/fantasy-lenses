@@ -1,10 +1,8 @@
 'use strict';
 
-const {identity} = require('fantasy-combinators');
-const Forget = require('./internal/forget');
+const { foldOf } = require('./Fold');
+const { Unit } = require('fantasy-monoids');
 
-const view = (l) => {
-    return l(Forget(identity)).run();
-};
+const view = foldOf(Unit);
 
 module.exports = { view };

@@ -1,7 +1,11 @@
 'use strict';
 
-const _1 = (x) => x.first;
+const { first, second } = require('fantasy-profunctors');
 
-const _2 = (x) => x.second;
+const _1 = first;
 
-module.exports = { _1, _2 };
+const _2 = second;
+
+module.exports = { _1
+                 , _2
+                 };
